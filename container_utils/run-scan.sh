@@ -128,6 +128,4 @@ if [ ! -z ${PrevCompare+x} ]; then
   ./diff-all-json.sh /scan/results /scan/prev_results
 fi
 
-
-
 chown -R ${TESTUID}:${TESTGID} /scan/results

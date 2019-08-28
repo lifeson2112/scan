@@ -31,7 +31,7 @@ RUN apt-get install -y wget curl
 #  && apt-get -y install kubectl
 
 # DEBUG
-RUN apt-get install -y vim less git telnet
+#RUN apt-get install -y vim less git telnet
 
 RUN \
    curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
