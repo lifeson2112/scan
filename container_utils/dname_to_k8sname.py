@@ -28,23 +28,25 @@ def cname_to_k8sname(content):
         line = line.replace("\n","")
         name_parts = line.split("_")
         container_type = 'container'
-        fullname = name_parts[2]
+        full_name = name_parts[2]
         namespace = name_parts[3]
 
         if not any(namespace in ns for ns in namespace_scan):
-            filter_results['not_applicable'].append(fullname)
-            continue 
+            filter_results['not_applicable'].append(full_name)
+            continue
 
         if name_parts[1] == "POD":
             container_type = "pod"
 
         # We only need to look at containers with this id postfix
-		# XXX: this is actually very horrible in cases where the
+        # XXX: this is actually very horrible in cases where the
         # actual container name is matched with this regex
-        if not re.match(r".*[a-z0-9]{10}-[a-z-0-9]{5}$", fullname):
-            filter_results['rejected'].append(fullname)
-        else:
-            filter_results['accepted'].append(fullname)
+        #if not re.match(r".*[a-z0-9]{10}-[a-z-0-9]{5}$", full_name):
+        #    filter_results['rejected'].append(full_name)
+        #else:
+        #    filter_results['accepted'].append(full_name)
+
+        filter_results['accepted'].append(full_name)
 
     return filter_results
 
