@@ -18,6 +18,7 @@ import json
 
 namespace_scan = ['openstack', 'osh-infra', 'ucp']
 
+
 def cname_to_k8sname(content):
     filter_results = {'rejected': [],
                       'accepted': [],
@@ -37,7 +38,9 @@ def cname_to_k8sname(content):
         if name_parts[1] == "POD":
             container_type = "pod"
 
-        # We only need to look at containers with this postfix 
+        # We only need to look at containers with this id postfix
+		# XXX: this is actually very horrible in cases where the
+        # actual container name is matched with this regex
         if not re.match(r".*[a-z0-9]{10}-[a-z-0-9]{5}$", fullname):
             filter_results['rejected'].append(fullname)
         else:
